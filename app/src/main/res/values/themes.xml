@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.AppEditor" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.AppEditor" parent="android:Theme.Material.Light.NoActionBar">
+
+    </style>
+
+
+    <style name="Theme.AppEditor.NhuanDev" parent="android:Theme.Material.Light.NoActionBar">
+            <item name="colorPrimary">@color/purple_500</item>
+            <item name="windowActionBar">false</item>
+            <item name="windowNoTitle">true</item>
+    </style>
+
 </resources>

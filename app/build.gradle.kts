@@ -67,4 +67,6 @@ dependencies {
     implementation("com.google.dagger:hilt-android:$hilt_version")
     kapt("com.google.dagger:hilt-compiler:2.50")
     implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
+
+    implementation("androidx.viewpager2:viewpager2:1.1.0")
 }
