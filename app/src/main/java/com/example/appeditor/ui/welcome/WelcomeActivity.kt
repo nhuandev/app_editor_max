@@ -1,6 +1,5 @@
 package com.example.appeditor.ui.welcome
 
-import android.annotation.SuppressLint
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,6 +10,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.appeditor.R
 import com.example.appeditor.constant.Constant
 import com.example.appeditor.ui.splash.SplashActivity
+import androidx.core.content.edit
 
 class WelcomeActivity : AppCompatActivity() {
     private lateinit var viewPager: ViewPager2
@@ -30,22 +30,22 @@ class WelcomeActivity : AppCompatActivity() {
 
         pagerAdapter.addFragment(
             WelcomeFragment.newInstance(
-                "Chào mừng bạn đến với App!",
-                "Khám phá những tính năng tuyệt vời nhất của ứng dụng của chúng tôi.",
+                R.string.lb_title_1.toString(),
+                R.string.lb_desc_1.toString(),
                 R.drawable.ic_launcher_foreground
             )
         )
         pagerAdapter.addFragment(
             WelcomeFragment.newInstance(
-                "Quản lý công việc dễ dàng",
-                "Tổ chức mọi thứ từ nhiệm vụ nhỏ đến dự án lớn một cách hiệu quả.",
+                R.string.lb_title_2.toString(),
+                R.string.lb_desc_2.toString(),
                 R.drawable.ic_launcher_foreground
             )
         )
         pagerAdapter.addFragment(
             WelcomeFragment.newInstance(
-                "Kết nối và chia sẻ",
-                "Dễ dàng tương tác với bạn bè và cộng đồng, không bỏ lỡ điều gì.",
+                R.string.lb_title_3.toString(),
+                R.string.lb_desc_3.toString(),
                 R.drawable.ic_launcher_foreground
             )
         )
@@ -56,10 +56,10 @@ class WelcomeActivity : AppCompatActivity() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 if (position == pagerAdapter.itemCount - 1) {
-                    nextButton.text = "Bắt đầu"
+                    nextButton.text = R.string.lb_start.toString()
                     skipButton.visibility = View.GONE
                 } else {
-                    nextButton.text = "Tiếp theo"
+                    nextButton.text = R.string.lb_next.toString()
                     skipButton.visibility = View.VISIBLE
                 }
             }
@@ -80,10 +80,9 @@ class WelcomeActivity : AppCompatActivity() {
         }
     }
 
-    @SuppressLint("UseKtx")
     private fun markWelcome() {
         val sharedPref = getSharedPreferences(Constant.PREFS_NAME, Context.MODE_PRIVATE)
-        with(sharedPref.edit()) {
+        sharedPref.edit {
             putBoolean(Constant.KEY_SEEN_WELCOME, true)
             apply()
         }

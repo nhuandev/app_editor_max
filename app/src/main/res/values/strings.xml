@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">AppEditor</string>
+
+    <!-- Content screen welcome -->
+    <string name="lb_title_1">Welcome to App Editor!</string>
+    <string name="lb_desc_1">Discover a powerful creative tool that helps you turn ideas into reality.</string>
+
+    <string name="lb_title_2">The Power of App Editor</string>
+    <string name="lb_desc_2">Create, edit, and manage your projects with an intuitive interface.</string>
+
+    <string name="lb_title_3">Collaborate and Share</string>
+    <string name="lb_desc_3">Work effectively with your team, share your creations, and get instant feedback.</string>
+
+    <string name="lb_next">Next</string>
+    <string name="lb_skip">Skip</string>
+    <string name="lb_start">Get Started</string>
+
+    <!-- Content permission -->
+    <string name="permission_granted">Permission granted.</string>
+    <string name="permission_required">Access permission is required to use this feature.</string>
+    <string name="ok">OK</string>
 </resources>

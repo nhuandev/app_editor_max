@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.appeditor.R
+import com.example.appeditor.constant.Constant
 
 class WelcomeFragment : Fragment() {
 
@@ -34,7 +35,6 @@ class WelcomeFragment : Fragment() {
         val welcomeTitle = view.findViewById<TextView>(R.id.welcome_title)
         val welcomeDescription = view.findViewById<TextView>(R.id.welcome_description)
 
-
         welcomeTitle.text = title
         welcomeDescription.text = description
         if (imageResource != 0) {
@@ -45,9 +45,9 @@ class WelcomeFragment : Fragment() {
     }
 
     companion object {
-        private const val ARG_TITLE = "title"
-        private const val ARG_DESCRIPTION = "description"
-        private const val ARG_IMAGE_RESOURCE = "imageResource"
+        private const val ARG_TITLE = Constant.ARG_TITLE
+        private const val ARG_DESCRIPTION = Constant.ARG_DESCRIPTION
+        private const val ARG_IMAGE_RESOURCE = Constant.ARG_IMAGE_RESOURCE
 
         @JvmStatic
         fun newInstance(title: String, description: String, imageResId: Int): WelcomeFragment {

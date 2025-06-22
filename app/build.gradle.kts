@@ -68,5 +68,9 @@ dependencies {
     kapt("com.google.dagger:hilt-compiler:2.50")
     implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
 
+    // View pager2
     implementation("androidx.viewpager2:viewpager2:1.1.0")
+
+    // Ktx
+    implementation("androidx.core:core-ktx:1.13.1")
 }
