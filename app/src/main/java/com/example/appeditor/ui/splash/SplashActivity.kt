@@ -11,7 +11,7 @@ import com.example.appeditor.constant.Constant.PREFS_NAME
 import android.content.Intent
 import android.os.Handler
 import com.example.appeditor.MainActivity
-import com.example.appeditor.constant.Constant.SPLASH_DELAY
+import com.example.appeditor.constant.Constant
 import com.example.appeditor.ui.welcome.WelcomeActivity
 
 @SuppressLint("CustomSplashScreen")
@@ -25,13 +25,13 @@ class SplashActivity : AppCompatActivity() {
 
         Handler(Looper.getMainLooper()).postDelayed({
             if (hasSeenWelcome) {
-                val intent = Intent(this, MainActivity::class.java)
+                val intent = Intent(this@SplashActivity, MainActivity::class.java)
                 startActivity(intent)
+                finish()
             } else {
-                val intent = Intent(this, WelcomeActivity::class.java)
+                val intent = Intent(this@SplashActivity, WelcomeActivity::class.java)
                 startActivity(intent)
             }
-            finish()
-        }, SPLASH_DELAY)
+        }, Constant.SPLASH_DELAY)
     }
 }

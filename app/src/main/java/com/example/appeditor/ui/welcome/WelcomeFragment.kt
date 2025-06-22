@@ -11,7 +11,6 @@ import com.example.appeditor.R
 import com.example.appeditor.constant.Constant
 
 class WelcomeFragment : Fragment() {
-
     private var title: String? = null
     private var description: String? = null
     private var imageResource: Int = 0
@@ -48,6 +47,7 @@ class WelcomeFragment : Fragment() {
         private const val ARG_TITLE = Constant.ARG_TITLE
         private const val ARG_DESCRIPTION = Constant.ARG_DESCRIPTION
         private const val ARG_IMAGE_RESOURCE = Constant.ARG_IMAGE_RESOURCE
+
 
         @JvmStatic
         fun newInstance(title: String, description: String, imageResId: Int): WelcomeFragment {
