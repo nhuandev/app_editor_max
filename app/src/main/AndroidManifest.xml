@@ -27,9 +27,11 @@
 
         <activity
             android:name=".ui.welcome.WelcomeActivity"
-            android:exported="false" android:label="@string/app_name"
-            tools:ignore="RedundantLabel"/>
+            android:exported="false"
+            android:label="@string/app_name"
+            tools:ignore="RedundantLabel" />
         <activity android:name=".MainActivity" />
+        <activity android:name=".ui.bitmap.BitmapActivity" />
     </application>
 
 </manifest>
