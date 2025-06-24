@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">AppEditor</string>
 
+    <string name="default_web_client_id">843047038985-770nc4vdg8asq0e7ngkcidmehl49h1so.apps.googleusercontent.com</string>
+
     <!-- Content screen welcome -->
     <string name="lb_title_1">Welcome to App Editor!</string>
     <string name="lb_desc_1">Discover a powerful creative tool that helps you turn ideas into reality.</string>
@@ -19,6 +21,17 @@
     <string name="permission_granted">Permission granted.</string>
     <string name="permission_required">Access permission is required to use this feature.</string>
     <string name="ok">OK</string>
+
+    <!-- Content screen login and sign up -->
+    <string name="lb_login">Log in</string>
+    <string name="lb_sign_up_desc">Sign Up and Start awesome edits!</string>
+    <string name="lb_sign_up">Sign Up</string>
+    <string name="lb_email">Your email</string>
+    <string name="lb_enter_email">Enter your email</string>
+    <string name="lb_welcome">Welcome back!</string>
+    <string name="lb_option">Or Sign In With</string>
+    <string name="lb_continue">Continue</string>
+    <string name="lb_desc_service">By continuing, you agree to our Terms of Service.</string>
 
 
 </resources>
