@@ -1,0 +1,76 @@
+{
+  "project_info": {
+    "project_number": "843047038985",
+    "project_id": "flash-chat-55c74",
+    "storage_bucket": "flash-chat-55c74.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:843047038985:android:b50fdd1f216878c4fa88d8",
+        "android_client_info": {
+          "package_name": "com.example.appeditor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "843047038985-d3p1f4bcu642c8vbbca89bbpe8dvdkv4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.appeditor",
+            "certificate_hash": "fa26efecc22a6c0308eb0272a38fd1f1826211f1"
+          }
+        },
+        {
+          "client_id": "843047038985-770nc4vdg8asq0e7ngkcidmehl49h1so.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtQuMGVytXvQ26f6EVKBzl93Pz_2F_8tU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "843047038985-770nc4vdg8asq0e7ngkcidmehl49h1so.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:843047038985:android:8b3057956574eb64fa88d8",
+        "android_client_info": {
+          "package_name": "com.example.flash_chat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "843047038985-770nc4vdg8asq0e7ngkcidmehl49h1so.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtQuMGVytXvQ26f6EVKBzl93Pz_2F_8tU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "843047038985-770nc4vdg8asq0e7ngkcidmehl49h1so.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

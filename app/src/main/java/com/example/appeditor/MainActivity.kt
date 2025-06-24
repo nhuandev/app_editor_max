@@ -19,10 +19,7 @@ class MainActivity : ComponentActivity() {
 
     private fun initUI() {
         binding.apply {
-            btnBitmap.setOnClickListener {
-                val intent = Intent(this@MainActivity, BitmapActivity::class.java)
-                startActivity(intent)
-            }
+            tvEmailUser.text = intent.getStringExtra("email")
         }
     }
 }
