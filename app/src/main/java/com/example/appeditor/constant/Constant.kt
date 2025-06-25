@@ -8,4 +8,6 @@ object Constant {
     const val ARG_TITLE = "title"
     const val ARG_DESCRIPTION = "description"
     const val ARG_IMAGE_RESOURCE = "imageResource"
+
+    const val ARG_EMAIL = "email"
 }

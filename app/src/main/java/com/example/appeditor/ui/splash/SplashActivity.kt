@@ -13,6 +13,7 @@ import android.os.Handler
 import com.example.appeditor.constant.Constant
 import com.example.appeditor.ui.signin.SignInActivity
 import com.example.appeditor.ui.welcome.WelcomeActivity
+import com.example.appeditor.MainActivity
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
@@ -23,11 +24,17 @@ class SplashActivity : AppCompatActivity() {
         val sharedPref = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
         val hasSeenWelcome = sharedPref.getBoolean(KEY_SEEN_WELCOME, false)
 
+        val dataLogin = sharedPref.getString(Constant.ARG_EMAIL, "")
+
         Handler(Looper.getMainLooper()).postDelayed({
             if (hasSeenWelcome) {
-                val intent = Intent(this@SplashActivity, SignInActivity::class.java)
-                startActivity(intent)
-                finish()
+                if (dataLogin.isNullOrEmpty()) {
+                    val intent = Intent(this@SplashActivity, SignInActivity::class.java)
+                    startActivity(intent)
+                } else {
+                    val intent = Intent(this@SplashActivity, MainActivity::class.java)
+                    startActivity(intent)
+                }
             } else {
                 val intent = Intent(this@SplashActivity, WelcomeActivity::class.java)
                 startActivity(intent)

@@ -33,5 +33,14 @@
     <string name="lb_continue">Continue</string>
     <string name="lb_desc_service">By continuing, you agree to our Terms of Service.</string>
 
+    <!-- Content Toasts -->
+    <string name="toast_login_success">Login success</string>
+    <string name="toast_login_failed">Login failed</string>
+    <string name="toast_signup_success">Sign up success</string>
+    <string name="toast_signup_failed">Sign up failed</string>
+    <string name="toast_google_login_success">Google login success %1$s</string>
+    <string name="toast_google_login_failed">Google login failed: %1$s</string>
+    <string name="toast_google_logout_success">Google logout success</string>
+    <string name="toast_google_logout_failed">Google logout failed</string>
 
 </resources>

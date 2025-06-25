@@ -2,35 +2,37 @@ package com.example.appeditor.ui.signup
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.appeditor.MainActivity
 import com.example.appeditor.R
+import com.example.appeditor.constant.Constant
+import com.example.appeditor.data.GoogleAuthManager
 import com.example.appeditor.databinding.ActivitySignUpBinding
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.common.api.ApiException
-import com.google.firebase.auth.GoogleAuthProvider
 
 class SignUpActivity : AppCompatActivity() {
     private val binding by lazy { ActivitySignUpBinding.inflate(layoutInflater) }
-    private lateinit var googleSignInClient: GoogleSignInClient
+    private lateinit var googleAuthManager: GoogleAuthManager
     private val viewModel: AuthViewModel by viewModels()
 
-    private val launcher =
+    private val googleLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
-            try {
-                val account = task.getResult(ApiException::class.java)
-                val credential = GoogleAuthProvider.getCredential(account.idToken, null)
-                viewModel.signInWithGoogleCredential(credential)
-            } catch (e: Exception) {
-                Toast.makeText(this, "Google Sign-In failed: ${e.message}", Toast.LENGTH_SHORT)
-                    .show()
-            }
+            googleAuthManager.handleSignInResult(
+                data = result.data,
+                onSuccess = { credential ->
+                    viewModel.signInWithGoogleCredential(credential)
+                },
+                onError = { error ->
+                    Toast.makeText(
+                        this,
+                        getString(R.string.toast_google_login_failed, error),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            )
         }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,45 +40,40 @@ class SignUpActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
 
-        initGoogleSignIn()
-        initUI()
+        googleAuthManager = GoogleAuthManager(this)
         observeUser()
-    }
 
-    private fun initGoogleSignIn() {
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))
-            .requestEmail()
-            .build()
-        googleSignInClient = GoogleSignIn.getClient(this, gso)
-    }
-
-    private fun initUI() {
-        binding.apply {
-            btnContinue.setOnClickListener {
-                // Xóa cache buộc người dùng chọn tài khoản vào lần sau
-                googleSignInClient.signOut().addOnCompleteListener {
-                    val signInIntent = googleSignInClient.signInIntent
-                    launcher.launch(signInIntent)
-                }
-            }
-
-            btnSignIn.setOnClickListener {
-                finish()
+        binding.btnGoogle.setOnClickListener {
+            googleAuthManager.signOut {
+                googleAuthManager.launchSignIn(googleLauncher)
             }
         }
     }
 
+
     private fun observeUser() {
+        viewModel.loading.observe(this) {
+            if (it) binding.progressCircular.visibility = View.VISIBLE
+            else binding.progressCircular.visibility = View.GONE
+        }
+
         viewModel.user.observe(this) { user ->
             if (user != null) {
-                Toast.makeText(this, "Đăng nhập thành công: ${user.email}", Toast.LENGTH_SHORT)
+                Toast.makeText(
+                    this,
+                    getString(R.string.toast_google_login_success, user.email),
+                    Toast.LENGTH_SHORT
+                )
                     .show()
                 val intent = Intent(this, MainActivity::class.java)
-                intent.putExtra("email", user.email)
+                intent.putExtra(Constant.ARG_EMAIL, user.email)
                 startActivity(intent)
             } else {
-                // Đăng nhập thất bại
+                Toast.makeText(
+                    this,
+                    getString(R.string.toast_google_login_failed),
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
     }

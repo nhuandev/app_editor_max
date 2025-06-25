@@ -1,15 +1,12 @@
 package com.example.appeditor
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import com.example.appeditor.constant.Constant
 import com.example.appeditor.databinding.ActivityMainBinding
-import com.example.appeditor.ui.bitmap.BitmapActivity
-import com.example.appeditor.ui.bitmap.CustomDrawableView
 
 class MainActivity : ComponentActivity() {
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
-    private lateinit var customDrawableView: CustomDrawableView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,7 +16,7 @@ class MainActivity : ComponentActivity() {
 
     private fun initUI() {
         binding.apply {
-            tvEmailUser.text = intent.getStringExtra("email")
+            tvEmailUser.text = intent.getStringExtra(Constant.ARG_EMAIL)
         }
     }
 }

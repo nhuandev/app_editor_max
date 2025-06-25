@@ -1,6 +1,5 @@
 package com.example.appeditor.ui.signup
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -19,7 +18,11 @@ class AuthViewModel : ViewModel() {
     private val _user = MutableLiveData<FirebaseUser?>()
     val user: LiveData<FirebaseUser?> = _user
 
+    private val _loading = MutableLiveData<Boolean>()
+    val loading: LiveData<Boolean> = _loading
+
     fun signInWithGoogleCredential(credential: AuthCredential) {
+        _loading.value = true
         viewModelScope.launch {
             try {
                 val result = withContext(Dispatchers.IO) {
@@ -27,8 +30,9 @@ class AuthViewModel : ViewModel() {
                 }
                 _user.value = result.user
             } catch (e: Exception) {
-                Log.e("AuthViewModel", "Sign in failed: ${e.message}")
                 _user.value = null
+            } finally {
+                _loading.value = false
             }
         }
     }

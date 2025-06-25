@@ -120,7 +120,7 @@
             app:layout_constraintTop_toBottomOf="@id/ly_text_option">
 
             <ImageView
-                android:id="@+id/img_google"
+                android:id="@+id/btn_google"
                 android:layout_width="@dimen/dimen_48"
                 android:layout_height="@dimen/dimen_48"
                 android:layout_marginEnd="@dimen/dimen_16"
@@ -132,7 +132,7 @@
                 android:layout_height="0dp" />
 
             <ImageView
-                android:id="@+id/img_facebook"
+                android:id="@+id/btn_facebook"
                 android:layout_width="@dimen/dimen_48"
                 android:layout_height="@dimen/dimen_48"
                 android:src="@drawable/img_facebook"
@@ -178,6 +178,17 @@
                 android:textAllCaps="false"
                 tools:ignore="MissingConstraints,PrivateResource" />
         </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progress_circular"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_48"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/ly_bottom"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/image_login"
+            tools:ignore="MissingConstraints" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
