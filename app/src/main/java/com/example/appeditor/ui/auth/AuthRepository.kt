@@ -1,18 +1,26 @@
-package com.example.appeditor.data
+package com.example.appeditor.ui.auth
 
 import android.content.Context
 import android.content.Intent
 import androidx.activity.result.ActivityResultLauncher
 import com.example.appeditor.R
-import com.google.android.gms.auth.api.signin.*
+import com.example.appeditor.utils.Constant
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
+import kotlinx.coroutines.tasks.await
+import androidx.core.content.edit
 
-class GoogleAuthManager(private val context: Context) {
+class AuthRepository(private val context: Context) : IAuthRepository {
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
     private val googleSignInClient: GoogleSignInClient
+    private val sharedPreferences =
+        context.getSharedPreferences(Constant.PREFS_NAME, Context.MODE_PRIVATE)
 
     init {
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -22,18 +30,18 @@ class GoogleAuthManager(private val context: Context) {
         googleSignInClient = GoogleSignIn.getClient(context, gso)
     }
 
-    fun signOut(onComplete: () -> Unit) {
+    override fun launchGoogleSignIn(launcher: ActivityResultLauncher<Intent>) {
+        val signInIntent = googleSignInClient.signInIntent
+        launcher.launch(signInIntent)
+    }
+
+    override fun signOut(onComplete: () -> Unit) {
         googleSignInClient.signOut().addOnCompleteListener {
             onComplete()
         }
     }
 
-    fun launchSignIn(launcher: ActivityResultLauncher<Intent>) {
-        val signInIntent = googleSignInClient.signInIntent
-        launcher.launch(signInIntent)
-    }
-
-    fun handleSignInResult(
+    override fun extractGoogleCredential(
         data: Intent?,
         onSuccess: (AuthCredential) -> Unit,
         onError: (String) -> Unit
@@ -48,4 +56,18 @@ class GoogleAuthManager(private val context: Context) {
         }
     }
 
+    override suspend fun signInWithCredential(credential: AuthCredential): FirebaseUser? {
+        return try {
+            val result = auth.signInWithCredential(credential).await()
+            result.user
+        } catch (e: Exception) {
+            null
+        }
+    }
+
+    override fun saveEmail() {
+        sharedPreferences.edit {
+            putString(Constant.ARG_EMAIL, auth.currentUser?.email)
+        }
+    }
 }

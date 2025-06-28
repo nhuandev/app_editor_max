@@ -7,7 +7,7 @@ import android.content.Intent
 import android.view.View
 import androidx.viewpager2.widget.ViewPager2
 import com.example.appeditor.R
-import com.example.appeditor.constant.Constant
+import com.example.appeditor.utils.Constant
 import com.example.appeditor.ui.splash.SplashActivity
 import androidx.core.content.edit
 import com.example.appeditor.databinding.ActivityWelcomeBinding

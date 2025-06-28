@@ -1,30 +1,24 @@
-package com.example.appeditor.ui.signup
+package com.example.appeditor.ui.auth
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.appeditor.MainActivity
 import com.example.appeditor.R
-import com.example.appeditor.constant.Constant
-import com.example.appeditor.data.GoogleAuthManager
 import com.example.appeditor.databinding.ActivitySignUpBinding
 
 class SignUpActivity : AppCompatActivity() {
     private val binding by lazy { ActivitySignUpBinding.inflate(layoutInflater) }
-    private lateinit var googleAuthManager: GoogleAuthManager
-    private val viewModel: AuthViewModel by viewModels()
+
+    private val viewModel: AuthViewModel by lazy { AuthViewModel(AuthRepository(this)) }
 
     private val googleLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            googleAuthManager.handleSignInResult(
+            viewModel.handleSignInResult(
                 data = result.data,
-                onSuccess = { credential ->
-                    viewModel.signInWithGoogleCredential(credential)
-                },
                 onError = { error ->
                     Toast.makeText(
                         this,
@@ -40,21 +34,21 @@ class SignUpActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
 
-        googleAuthManager = GoogleAuthManager(this)
+        initUI()
         observeUser()
+    }
 
-        binding.btnGoogle.setOnClickListener {
-            googleAuthManager.signOut {
-                googleAuthManager.launchSignIn(googleLauncher)
+    private fun initUI() {
+        binding.apply {
+            btnGoogle.setOnClickListener {
+                viewModel.launchGoogleSignIn(googleLauncher)
             }
         }
     }
 
-
     private fun observeUser() {
         viewModel.loading.observe(this) {
-            if (it) binding.progressCircular.visibility = View.VISIBLE
-            else binding.progressCircular.visibility = View.GONE
+            binding.progressCircular.visibility = if (it) View.VISIBLE else View.GONE
         }
 
         viewModel.user.observe(this) { user ->
@@ -63,10 +57,9 @@ class SignUpActivity : AppCompatActivity() {
                     this,
                     getString(R.string.toast_google_login_success, user.email),
                     Toast.LENGTH_SHORT
-                )
-                    .show()
+                ).show()
+                viewModel.saveEmail()
                 val intent = Intent(this, MainActivity::class.java)
-                intent.putExtra(Constant.ARG_EMAIL, user.email)
                 startActivity(intent)
             } else {
                 Toast.makeText(
