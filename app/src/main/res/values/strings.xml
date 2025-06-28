@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AppEditor</string>
+    <string name="app_name">PixelForge</string>
 
     <string name="default_web_client_id">843047038985-770nc4vdg8asq0e7ngkcidmehl49h1so.apps.googleusercontent.com</string>
 
@@ -32,6 +32,9 @@
     <string name="lb_option">Or Sign In With</string>
     <string name="lb_continue">Continue</string>
     <string name="lb_desc_service">By continuing, you agree to our Terms of Service.</string>
+    <string name="lb_forgot_password">Forgot password?</string>
+    <string name="lb_made_by">Made by&#160;</string>
+    <string name="lb_made_author">Phu Nhuan.</string>
 
     <!-- Content Toasts -->
     <string name="toast_login_success">Login success</string>

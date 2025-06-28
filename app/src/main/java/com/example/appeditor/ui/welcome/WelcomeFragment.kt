@@ -51,4 +51,16 @@ class WelcomeFragment : Fragment() {
             }
         }
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val title = arguments?.getString(ARG_TITLE)
+        val desc = arguments?.getString(ARG_DESCRIPTION)
+        val imageRes = arguments?.getInt(ARG_IMAGE_RESOURCE)
+
+        binding.welcomeTitle.text = title
+        binding.welcomeDescription.text = desc
+        imageRes?.let { binding.welcomeImage.setImageResource(it) }
+    }
 }

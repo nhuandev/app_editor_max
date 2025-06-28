@@ -122,25 +122,29 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ly_text_option">
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/btn_google"
-                android:layout_width="@dimen/dimen_48"
-                android:layout_height="@dimen/dimen_48"
-                android:layout_marginEnd="@dimen/dimen_16"
+                android:layout_width="@dimen/dimen_64"
+                android:layout_height="@dimen/dimen_64"
+                android:background="@drawable/bg_social_button"
+                android:scaleType="centerInside"
                 android:src="@drawable/img_google"
-                tools:ignore="ContentDescription" />
+                tools:ignore="ContentDescription,MissingConstraints" />
 
             <View
                 android:layout_width="@dimen/dimen_48"
                 android:layout_height="0dp" />
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/btn_facebook"
-                android:layout_width="@dimen/dimen_48"
-                android:layout_height="@dimen/dimen_48"
+                android:layout_width="@dimen/dimen_64"
+                android:layout_height="@dimen/dimen_64"
+                android:background="@drawable/bg_social_button"
+                android:scaleType="centerInside"
                 android:src="@drawable/img_facebook"
-                tools:ignore="ContentDescription" />
+                tools:ignore="ContentDescription,MissingConstraints" />
         </LinearLayout>
+
 
         <LinearLayout
             android:id="@+id/ly_bottom"

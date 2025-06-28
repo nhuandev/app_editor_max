@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:gravity="center"
-            android:text="Tiêu đề màn hình"
+            android:text="@null"
             android:textSize="24sp"
             android:textStyle="bold"
             tools:ignore="HardcodedText,MissingConstraints" />
@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:lineSpacingExtra="4dp"
-            android:text="Mô tả chi tiết cho màn hình welcome này, giới thiệu về tính năng hoặc lợi ích."
+            android:text="@null"
             android:textSize="16sp"
             tools:ignore="HardcodedText,MissingConstraints" />
     </LinearLayout>

@@ -3,7 +3,7 @@ package com.example.appeditor.ui.splash
 import android.content.Context
 import com.example.appeditor.utils.Constant
 
-class SplashRepository(private val context: Context) : ISplashRepository {
+class SplashRepository(context: Context) : ISplashRepository {
     private val sharedPreferences = context.getSharedPreferences(Constant.PREFS_NAME, Context.MODE_PRIVATE)
 
     override fun hasScreenWelcome(): Boolean  {
