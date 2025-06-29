@@ -46,4 +46,9 @@
     <string name="toast_google_logout_success">Google logout success</string>
     <string name="toast_google_logout_failed">Google logout failed</string>
 
+    <!--Content fragment home-->
+    <string name="lb_features">Features</string>
+    <string name="feature_edited_photos">Edited Photos</string>
+    <string name="lb_view_all">View all</string>
+
 </resources>
