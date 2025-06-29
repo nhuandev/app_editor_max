@@ -9,7 +9,7 @@
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/welcome_view_pager"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_576"
+        android:layout_height="@dimen/dimen_600"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

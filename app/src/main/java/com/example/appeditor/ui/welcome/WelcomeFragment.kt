@@ -9,8 +9,9 @@ import com.example.appeditor.utils.Constant
 import com.example.appeditor.databinding.FragmentWelcomePageBinding
 
 class WelcomeFragment : Fragment() {
-    private var _binding: FragmentWelcomePageBinding? = null
-    private val binding get() = _binding!!
+//    private var _binding: FragmentWelcomePageBinding? = null
+    private lateinit var binding : FragmentWelcomePageBinding
+//    private val binding get() = _binding!!
 
     private var title: String? = null
     private var description: String? = null
@@ -31,7 +32,7 @@ class WelcomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentWelcomePageBinding.inflate(inflater, container, false)
+        binding = FragmentWelcomePageBinding.inflate(inflater, container, false)
         return binding.root
     }
 

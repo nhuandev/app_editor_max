@@ -83,4 +83,9 @@ dependencies {
 
     // Coroutine
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.6.4")
+
+    implementation("androidx.compose.material:material-icons-extended:1.6.0")
+
+    implementation("com.google.android.material:material:1.11.0")
+
 }

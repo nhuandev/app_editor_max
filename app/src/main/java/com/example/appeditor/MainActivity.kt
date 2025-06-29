@@ -1,24 +1,56 @@
 package com.example.appeditor
 
+import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.activity.ComponentActivity
+import androidx.appcompat.app.AppCompatActivity
+import androidx.viewpager2.widget.ViewPager2
 import com.example.appeditor.databinding.ActivityMainBinding
+import com.example.appeditor.ui.main.AddFragment
+import com.example.appeditor.ui.main.HomeFragment
+import com.example.appeditor.ui.main.SettingFragment
+import com.example.appeditor.ui.main.ViewPagerAdapter
 import com.example.appeditor.ui.splash.SplashRepository
 import com.example.appeditor.ui.splash.SplashViewModel
 
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     private val viewModel: SplashViewModel by lazy { SplashViewModel(SplashRepository(this)) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
         initUI()
     }
 
     private fun initUI() {
+        val fragments = listOf(
+            HomeFragment(),
+            AddFragment(),
+            SettingFragment()
+        )
+
+        val adapterMain = ViewPagerAdapter(this, fragments)
+
         binding.apply {
-            tvEmailUser.text = viewModel.getSaveEdEmail()
+            viewpagerMain.adapter = adapterMain
+
+            viewpagerMain.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+                @SuppressLint("UseKtx")
+                override fun onPageSelected(position: Int) {
+                    super.onPageSelected(position)
+                    bottomNavigation.menu.getItem(position).isChecked = true
+                }
+            })
+
+            bottomNavigation.setOnItemSelectedListener {
+                when (it.itemId) {
+                    R.id.nav_home -> viewpagerMain.currentItem = 0
+                    R.id.nav_add -> viewpagerMain.currentItem = 1
+                    R.id.nav_setting -> viewpagerMain.currentItem = 2
+                }
+                true
+            }
         }
     }
 }
